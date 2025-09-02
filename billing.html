@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Billing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex min-h-screen bg-gray-100">
+  
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-900 text-gray-100 flex flex-col fixed h-full">
+    <div class="p-4 text-xl font-bold border-b border-gray-700">KatonPanel</div>
+    <nav class="flex-1 p-4 space-y-2">
+      <a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a>
+      <a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a>
+      <a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a>
+      <a href="billing.html" class="block p-2 rounded bg-gray-700">Billing</a>
+      <a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a>
+    </nav>
+    <div class="p-4 border-t border-gray-700 text-sm text-gray-400">© 2025 KatonPanel Co.</div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col ml-64">
+    <header class="bg-white shadow p-4 flex justify-between items-center sticky top-0 z-10">
+      <h1 class="text-lg font-semibold">Billing & Invoices</h1>
+      <div class="flex items-center space-x-4">
+        <span class="text-gray-700">Hello, Admin</span>
+        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Logout</button>
+      </div>
+    </header>
+
+    <main class="p-6 flex-1">
+      <div class="bg-white shadow rounded-lg overflow-x-auto">
+        <table class="min-w-full border-collapse">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="p-3 border">Invoice #</th>
+              <th class="p-3 border">User</th>
+              <th class="p-3 border">Amount</th>
+              <th class="p-3 border">Status</th>
+              <th class="p-3 border">Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border">INV-001</td>
+              <td class="p-3 border">John Doe</td>
+              <td class="p-3 border">$50</td>
+              <td class="p-3 border text-green-600">Paid</td>
+              <td class="p-3 border">2025-08-20</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="p-3 border">INV-002</td>
+              <td class="p-3 border">Jane Smith</td>
+              <td class="p-3 border">$30</td>
+              <td class="p-3 border text-yellow-600">Pending</td>
+              <td class="p-3 border">2025-09-05</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="bg-white shadow p-4 text-center text-sm text-gray-500">
+      © 2025 KatonPanel Co. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
