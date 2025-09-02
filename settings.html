@@ -3,152 +3,180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Settings</title>
+  <title>Admin Panel - Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animasi sidebar */
+    #sidebar {
+      transition: transform 0.3s ease;
+    }
+
+    /* Ketika checkbox dicentang, sidebar geser */
+    #menu-toggle:checked ~ #sidebar {
+      transform: translateX(-100%);
+    }
+
+    /* Ketika sidebar geser, konten meluas */
+    #menu-toggle:checked ~ #main-content {
+      margin-left: 0;
+    }
+  </style>
 </head>
-<body class="flex min-h-screen bg-gray-100">
-  
-  <!-- Navigasi Sidebar -->
-  <aside class="w-64 bg-gray-900 text-gray-100 flex flex-col fixed h-full">
-    <div class="p-4 text-xl font-bold border-b border-gray-700">KatonPanel</div>
-    <nav class="flex-1 p-4 space-y-2">
-      <a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a>
-      <a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a>
-      <a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a>
-      <a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a>
-      <a href="settings.html" class="block p-2 rounded bg-gray-700">Settings</a>
-    </nav>
-    <div class="p-4 border-t border-gray-700 text-sm text-gray-400">© 2025 KatonPanel Co.</div>
-  </aside>
+<body class="bg-gray-100">
 
-  <!-- Konten 1 -->
-  <div class="flex-1 flex flex-col ml-64">
-    <header class="bg-white shadow p-4 flex justify-between items-center sticky top-0 z-10">
-      <h1 class="text-lg font-semibold">Settings</h1>
+  <!-- Checkbox Hack -->
+  <input type="checkbox" id="menu-toggle" class="hidden">
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-900 text-white">
+    <div class="p-4 text-2xl font-bold">KatonPanel</div>
+    <ul class="space-y-2 p-4">
+      <li><a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a></li>
+      <li><a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a></li>
+      <li><a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a></li>
+      <li><a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a></li>
+      <li><a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
+    </ul>
+  </div>
+
+  <!-- Konten -->
+  <div id="main-content" class="ml-64 transition-all duration-300">
+    <!-- Header -->
+    <div class="flex items-center justify-between bg-white p-4 shadow">
+      <label for="menu-toggle" class="cursor-pointer text-xl">&#9776;</label>
       <div class="flex items-center space-x-4">
-        <span class="text-gray-700">Hello, Admin</span>
-        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Logout</button>
+        <span>Hello, Admin</span>
+        <button class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
       </div>
-    </header>
-
+    </div>
+    <!-- Isi Konten -->
     <main class="p-6 flex-1 space-y-6">
-      
-      <!-- Setingan Akun -->
+      <h1 class="text-2xl font-bold mb-4">Settings</h1>
+
+      <!-- Account -->
       <section class="bg-white shadow rounded-lg p-6 space-y-4">
         <h2 class="text-lg font-semibold border-b pb-2">Account Settings</h2>
-        <div>
-          <label class="block text-sm font-medium">Full Name</label>
-          <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="Admin User">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Email</label>
-          <input type="email" class="w-full border rounded px-3 py-2 mt-1" value="admin@hosting.com">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Change Password</label>
-          <input type="password" class="w-full border rounded px-3 py-2 mt-1" placeholder="New Password">
-        </div>
-        <div class="flex items-center space-x-2">
-          <input type="checkbox" id="2fa" class="rounded">
-          <label for="2fa" class="text-sm">Enable Two-Factor Authentication</label>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Full Name</label>
+            <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="Admin User">
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Email</label>
+            <input type="email" class="w-full border rounded px-3 py-2 mt-1" value="admin@hosting.com">
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Change Password</label>
+            <input type="password" class="w-full border rounded px-3 py-2 mt-1" placeholder="New Password">
+          </div>
+          <div class="flex items-center space-x-2 mt-6">
+            <input type="checkbox" id="2fa" class="rounded">
+            <label for="2fa" class="text-sm">Enable Two-Factor Authentication</label>
+          </div>
         </div>
       </section>
 
-
-      <!-- Server & Domain Settings -->
+      <!-- Server & Domain -->
       <section class="bg-white shadow rounded-lg p-6 space-y-4">
         <h2 class="text-lg font-semibold border-b pb-2">Server & Domain Settings</h2>
-        <div>
-          <label class="block text-sm font-medium">Default Nameserver</label>
-          <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="ns1.katonpanel.com">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Default Nameserver</label>
+            <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="ns1.katonpanel.com">
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Server IP</label>
+            <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="192.168.1.1">
+          </div>
         </div>
-        <div>
-          <label class="block text-sm font-medium">Server IP</label>
-          <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="192.168.1.1">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Backup & Restore</label>
-          <button class="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 mt-1">Run Backup</button>
-        </div>
+        <button onclick="alert('Backup started successfully!')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mt-3">Run Backup</button>
       </section>
 
-      <!-- Billing Setting -->
+      <!-- Billing -->
       <section class="bg-white shadow rounded-lg p-6 space-y-4">
         <h2 class="text-lg font-semibold border-b pb-2">Billing Settings</h2>
-        <div>
-          <label class="block text-sm font-medium">Payment Method</label>
-          <select class="w-full border rounded px-3 py-2 mt-1">
-            <option>Credit Card</option>
-            <option>PayPal</option>
-            <option>Bank Transfer</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Currency</label>
-          <select class="w-full border rounded px-3 py-2 mt-1">
-            <option>IDR</option>
-            <option>USD</option>
-            <option>SGD</option>
-          </select>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Payment Method</label>
+            <select class="w-full border rounded px-3 py-2 mt-1">
+              <option>Credit Card</option>
+              <option>PayPal</option>
+              <option>Bank Transfer</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Currency</label>
+            <select class="w-full border rounded px-3 py-2 mt-1">
+              <option>IDR</option>
+              <option>USD</option>
+              <option>SGD</option>
+            </select>
+          </div>
         </div>
       </section>
 
       <!-- Email -->
       <section class="bg-white shadow rounded-lg p-6 space-y-4">
-        <h2 class="text-lg font-semibold border-b pb-2">Email & Notification Settings</h2>
-        <div>
-          <label class="block text-sm font-medium">SMTP Server</label>
-          <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="smtp.katonpanel.com">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Notification Preference</label>
-          <select class="w-full border rounded px-3 py-2 mt-1">
-            <option>Email</option>
-            <option>SMS</option>
-            <option>WhatsApp</option>
-          </select>
+        <h2 class="text-lg font-semibold border-b pb-2">Email & Notifications</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">SMTP Server</label>
+            <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="smtp.katonpanel.com">
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Notification Preference</label>
+            <select class="w-full border rounded px-3 py-2 mt-1">
+              <option>Email</option>
+              <option>SMS</option>
+              <option>WhatsApp</option>
+            </select>
+          </div>
         </div>
       </section>
 
-      <!-- Keamanan -->
+      <!-- Security -->
       <section class="bg-white shadow rounded-lg p-6 space-y-4">
         <h2 class="text-lg font-semibold border-b pb-2">Security Settings</h2>
-        <div>
-          <label class="block text-sm font-medium">Session Timeout (minutes)</label>
-          <input type="number" class="w-full border rounded px-3 py-2 mt-1" value="30">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Allowed IPs</label>
-          <textarea class="w-full border rounded px-3 py-2 mt-1" rows="3">192.168.1.100</textarea>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">API Key</label>
-          <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="abcd-1234-efgh-5678">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Session Timeout (minutes)</label>
+            <input type="number" class="w-full border rounded px-3 py-2 mt-1" value="30">
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Allowed IPs</label>
+            <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="192.169.242.23">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-sm font-medium">API Key</label>
+            <input type="text" class="w-full border rounded px-3 py-2 mt-1" value="abcd-1234-efgh-5678">
+          </div>
         </div>
       </section>
 
-      <!-- Tema Dan Font -->
+      <!-- Appearance -->
       <section class="bg-white shadow rounded-lg p-6 space-y-4">
         <h2 class="text-lg font-semibold border-b pb-2">Appearance</h2>
-        <div>
-          <label class="block text-sm font-medium">Theme</label>
-          <select class="w-full border rounded px-3 py-2 mt-1">
-            <option>Light</option>
-            <option>Dark</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Language</label>
-          <select class="w-full border rounded px-3 py-2 mt-1">
-            <option>English</option>
-            <option>Bahasa Indonesia</option>
-          </select>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Theme</label>
+            <select class="w-full border rounded px-3 py-2 mt-1">
+              <option>Light</option>
+              <option>Dark</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Language</label>
+            <select class="w-full border rounded px-3 py-2 mt-1">
+              <option>English</option>
+              <option>Bahasa Indonesia</option>
+            </select>
+          </div>
         </div>
       </section>
 
-      <!-- Tombol -->
+      <!-- Save Button -->
       <div class="text-right">
-        <button class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save All Changes</button>
+        <button onclick="alert('Settings saved successfully!')" class="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save All Changes</button>
       </div>
     </main>
 

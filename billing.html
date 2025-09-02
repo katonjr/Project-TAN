@@ -1,17 +1,22 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Billing & Invoice</title>
+  <title>Admin Panel - Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Animasi sidebar */
     #sidebar {
       transition: transform 0.3s ease;
     }
+
+    /* Ketika checkbox dicentang, sidebar geser */
     #menu-toggle:checked ~ #sidebar {
       transform: translateX(-100%);
     }
+
+    /* Ketika sidebar geser, konten meluas */
     #menu-toggle:checked ~ #main-content {
       margin-left: 0;
     }
@@ -29,7 +34,7 @@
       <li><a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a></li>
       <li><a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a></li>
       <li><a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a></li>
-      <li><a href="billing.html" class="block p-2 rounded bg-gray-700">Billing</a></li>
+      <li><a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a></li>
       <li><a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
     </ul>
   </div>
@@ -44,10 +49,9 @@
         <button class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
       </div>
     </div>
-
     <!-- Isi Konten -->
     <main class="p-6 flex-1 space-y-6">
-      <h1 class="text-2xl font-bold mb-4">Billing & Invoice</h1>
+      <h1 class="text-2xl font-bold mb-4">Billing & Invoices</h1>
 
       <!-- Ringkasan Billing -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
