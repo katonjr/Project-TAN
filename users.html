@@ -3,13 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Users</title>
+  <title>Admin Panel - Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Animasi sidebar */
-    #sidebar { transition: transform 0.3s ease; }
-    #menu-toggle:checked ~ #sidebar { transform: translateX(-100%); }
-    #menu-toggle:checked ~ #main-content { margin-left: 0; }
+    #sidebar {
+      transition: transform 0.3s ease;
+    }
+
+    /* Ketika checkbox dicentang, sidebar geser */
+    #menu-toggle:checked ~ #sidebar {
+      transform: translateX(-100%);
+    }
+
+    /* Ketika sidebar geser, konten meluas */
+    #menu-toggle:checked ~ #main-content {
+      margin-left: 0;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -18,31 +28,30 @@
   <input type="checkbox" id="menu-toggle" class="hidden">
 
   <!-- Sidebar -->
-  <aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-900 text-white">
+  <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-900 text-white">
     <div class="p-4 text-2xl font-bold">KatonPanel</div>
-    <nav class="space-y-2 p-4">
-      <a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a>
-      <a href="users.html" class="block p-2 rounded bg-gray-700">Users</a>
-      <a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a>
-      <a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a>
-      <a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a>
-    </nav>
-  </aside>
+    <ul class="space-y-2 p-4">
+      <li><a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a></li>
+      <li><a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a></li>
+      <li><a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a></li>
+      <li><a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a></li>
+      <li><a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
+    </ul>
+  </div>
 
-  <!-- Main Content -->
-  <div id="main-content" class="ml-64 transition-all duration-300 flex flex-col min-h-screen">
-    
+  <!-- Konten -->
+  <div id="main-content" class="ml-64 transition-all duration-300">
     <!-- Header -->
-    <header class="bg-white shadow p-4 flex justify-between items-center sticky top-0 z-10">
+    <div class="flex items-center justify-between bg-white p-4 shadow">
       <label for="menu-toggle" class="cursor-pointer text-xl">&#9776;</label>
       <div class="flex items-center space-x-4">
-        <span class="text-gray-700">Hello, Admin</span>
-        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Logout</button>
+        <span>Hello, Admin</span>
+        <button class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
       </div>
-    </header>
-
+    </div>
     <!-- Isi Konten -->
     <main class="p-6 flex-1 space-y-6">
+      <h1 class="text-2xl font-bold mb-4">All Users</h1>
 
       <!-- User Summary Cards -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
