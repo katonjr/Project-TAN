@@ -5,35 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel - Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animasi sidebar */
+    #sidebar {
+      transition: transform 0.3s ease;
+    }
+
+    /* Ketika checkbox dicentang, sidebar geser */
+    #menu-toggle:checked ~ #sidebar {
+      transform: translateX(-100%);
+    }
+
+    /* Ketika sidebar geser, konten meluas */
+    #menu-toggle:checked ~ #main-content {
+      margin-left: 0;
+    }
+  </style>
 </head>
-<body class="flex min-h-screen bg-gray-100">
-  
+<body class="bg-gray-100">
+
+  <!-- Checkbox Hack -->
+  <input type="checkbox" id="menu-toggle" class="hidden">
+
   <!-- Sidebar -->
-  <aside class="w-64 bg-gray-900 text-gray-100 flex flex-col fixed h-full">
-    <div class="p-4 text-xl font-bold border-b border-gray-700">KatonPanel</div>
-    <nav class="flex-1 p-4 space-y-2">
-      <a href="index.html" class="block p-2 rounded bg-gray-700">Dashboard</a>
-      <a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a>
-      <a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a>
-      <a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a>
-      <a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a>
-    </nav>
-    <div class="p-4 border-t border-gray-700 text-sm text-gray-400">© 2025 KatonPanel Co.</div>
-  </aside>
+  <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-900 text-white">
+    <div class="p-4 text-2xl font-bold">KatonPanel</div>
+    <ul class="space-y-2 p-4">
+      <li><a href="index.html" class="block p-2 rounded hover:bg-gray-700">Dashboard</a></li>
+      <li><a href="users.html" class="block p-2 rounded hover:bg-gray-700">Users</a></li>
+      <li><a href="services.html" class="block p-2 rounded hover:bg-gray-700">Services</a></li>
+      <li><a href="billing.html" class="block p-2 rounded hover:bg-gray-700">Billing</a></li>
+      <li><a href="settings.html" class="block p-2 rounded hover:bg-gray-700">Settings</a></li>
+    </ul>
+  </div>
 
-  <!-- Main Content -->
-  <div class="flex-1 flex flex-col ml-64">
-    <header class="bg-white shadow p-4 flex justify-between items-center sticky top-0 z-10">
-      <h1 class="text-lg font-semibold">Dashboard</h1>
+  <!-- Konten -->
+  <div id="main-content" class="ml-64 transition-all duration-300">
+    <!-- Header -->
+    <div class="flex items-center justify-between bg-white p-4 shadow">
+      <label for="menu-toggle" class="cursor-pointer text-xl">&#9776;</label>
       <div class="flex items-center space-x-4">
-        <span class="text-gray-700">Hello, Admin</span>
-        <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Logout</button>
+        <span>Hello, Admin</span>
+        <button class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
       </div>
-    </header>
+    </div>
 
-    <main class="p-6 flex-1">
+    <!-- Isi Konten -->
+    <div class="p-6">
+      <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white p-4 shadow rounded">Users: <span class="font-bold text-xl">150</span></div>
+        <div class="bg-white p-4 shadow rounded">Active Services: <span class="font-bold text-xl">320</span></div>
+        <div class="bg-white p-4 shadow rounded">Pending Tickets: <span class="font-bold text-xl">12</span></div>
+      </div>
+    </div>
+    <main class="p-6 flex-1 space-y-8">
+      
+      <!-- Ringkasan Data -->
       <h2 class="text-xl font-bold mb-4">Ringkasan Data</h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div class="bg-white shadow rounded-lg p-4">
           <h2 class="text-sm text-gray-500">Users</h2>
           <p class="text-2xl font-bold">150</p>
@@ -51,11 +81,75 @@
           <p class="text-2xl font-bold text-green-600">Online</p>
         </div>
       </div>
+
+      <!-- Grafik Statis -->
+      <h2 class="text-xl font-bold">Server Terpakai</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="bg-white shadow rounded-lg p-4">
+          <h3 class="text-sm text-gray-500">CPU Usage</h3>
+          <div class="w-full bg-gray-200 rounded h-4 mt-2">
+            <div class="bg-blue-600 h-4 rounded" style="width: 65%"></div>
+          </div>
+          <p class="text-sm mt-1 text-gray-600">65%</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+          <h3 class="text-sm text-gray-500">Memory Usage</h3>
+          <div class="w-full bg-gray-200 rounded h-4 mt-2">
+            <div class="bg-green-600 h-4 rounded" style="width: 40%"></div>
+          </div>
+          <p class="text-sm mt-1 text-gray-600">40%</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-4">
+          <h3 class="text-sm text-gray-500">Disk Usage</h3>
+          <div class="w-full bg-gray-200 rounded h-4 mt-2">
+            <div class="bg-red-600 h-4 rounded" style="width: 80%"></div>
+          </div>
+          <p class="text-sm mt-1 text-gray-600">80%</p>
+        </div>
+      </div>
+
+      <!-- Tabel Data -->
+      <h2 class="text-xl font-bold">List User</h2>
+      <div class="overflow-x-auto bg-white shadow rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">ID</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Name</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Email</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="px-4 py-2">1</td>
+              <td class="px-4 py-2">Galih</td>
+              <td class="px-4 py-2">Galih@example.com</td>
+              <td class="px-4 py-2 text-green-600">Active</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2">2</td>
+              <td class="px-4 py-2">Katon</td>
+              <td class="px-4 py-2">katon@example.com</td>
+              <td class="px-4 py-2 text-yellow-600">Pending</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2">3</td>
+              <td class="px-4 py-2">Testing</td>
+              <td class="px-4 py-2">testing@example.com</td>
+              <td class="px-4 py-2 text-red-600">Suspended</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
 
-    <footer class="bg-white shadow p-4 text-center text-sm text-gray-500">
-      © 2025 KatonPanel Co. All rights reserved.
-    </footer>
-  </div>
+   
+
 </body>
+ <!-- Footer -->
+ <footer class="bg-white shadow p-4 text-center">
+  © 2025 KatonPanel Co. All rights reserved.
+</footer>
+</div>
 </html>
